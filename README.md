@@ -16,6 +16,12 @@ A small bilingual cleaning Pomodoro progressive web app.
 - Optionale Benachrichtigung bei Phasenende, wenn die App im Hintergrund ist (Erlaubnis wird beim ersten Start abgefragt) / Optional notification when a phase ends while the app is in the background (permission is requested on first start)
 - Eigenes Tomaten-Mopp-Logo / Tomato-and-mop logo
 
+## App öffnen / Open the app
+
+https://martinkammler.github.io/clean-a-doro/
+
+Im Browser öffnen und über „Zum Startbildschirm hinzufügen“ bzw. „App installieren“ installieren. / Open in the browser and use “Add to Home Screen” / “Install app”.
+
 ## Lokal starten / Run locally
 
 Keine Installation oder Build-Werkzeuge erforderlich. / No dependencies or build step required.
@@ -28,7 +34,7 @@ Open http://localhost:8080 in your browser.
 
 ## Hosting
 
-Den Inhalt von `dist/` auf einem HTTPS-Webserver bereitstellen. Alle Pfade sind relativ, daher ist auch Hosting in einem Unterverzeichnis möglich. Service Worker und PWA-Installation benötigen HTTPS (oder localhost).
+Jeder Push auf `main` veröffentlicht `dist/` automatisch über GitHub Pages (`.github/workflows/pages.yml`). Alternativ den Inhalt von `dist/` auf einem HTTPS-Webserver bereitstellen. Alle Pfade sind relativ, daher ist auch Hosting in einem Unterverzeichnis möglich. Service Worker und PWA-Installation benötigen HTTPS (oder localhost).
 
 Serve `dist/` over HTTPS. Relative paths support subdirectory hosting. Service workers and PWA installation require HTTPS or localhost.
 
@@ -53,3 +59,7 @@ Einstellungen und Timerstatus werden ausschließlich lokal im Browser gespeicher
 Der Code liegt bewusst unminifiziert in `dist/`, damit er ohne Build-Schritt lesbar und reviewbar bleibt. Bei geänderter Asset-Liste die Cache-Version in `sw.js` erhöhen. / Code in `dist/` is intentionally unminified. Bump the cache version in `sw.js` when the asset list changes.
 
 Die Signaltöne entstehen per Web Audio API ohne fremde Audioaufnahmen. / Sounds use Web Audio synthesis without third-party recordings.
+
+## Lizenz / License
+
+MIT – siehe / see [LICENSE](LICENSE). Die Schrift Bricolage Grotesque steht unter der SIL Open Font License (`dist/fonts/OFL.txt`).
