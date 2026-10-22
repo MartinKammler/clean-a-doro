@@ -1,1 +1,112 @@
-<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f5f4ed"><meta name="description" content="Clean-a-Doro — dein entspannter Putztimer. Your gentle cleaning timer."><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon.svg"><link rel="apple-touch-icon" href="icon-192.png"><title>Clean-a-Doro</title><link rel="stylesheet" href="style.css"></head><body><header><a class="brand" href="./"><img src="icon.svg" alt=""><b>Clean-a-Doro<span data-t="tag">Ein bisschen sauberer. Ganz entspannt.</span></b></a><div class="tools"><button id="lang" aria-label="Switch language">EN</button><button id="settings" data-t="settings">Einstellungen</button></div></header><main><div class="intro"><span class="eyebrow" data-t="eyebrow">DEIN KLEINER PUTZRHYTHMUS</span><h1 data-t="headline">Kleine Schritte.<br>Sauberes Zuhause.</h1><p data-t="sub">Ein Raum. Ein Anfang. Die Pause gehört dazu.</p></div><section class="timer-card"><div class="card-top"><span id="phase" class="badge"></span><span id="round"></span></div><div id="clock" role="timer" aria-label="Countdown">10:00</div><p id="hint"></p><div class="progress"><div id="bar"></div></div><button id="start" class="primary"></button><button id="stop" class="stop" data-t="stop">■ &nbsp; Stop / Abbruch</button><p id="next" class="next"></p></section><section class="rhythm"><div class="section-title"><h2 data-t="rhythm">Dein Rhythmus</h2><span data-t="repeat">Und dann wieder von vorn.</span></div><div class="steps" id="steps"></div></section><p class="gentle" data-t="gentle">Nicht alles auf einmal. Zehn Minuten sind ein guter Anfang.</p><footer><span data-t="local">Deine Einstellungen bleiben auf diesem Gerät.</span><button id="install" data-t="install">App installieren ↗</button></footer><p class="notice" data-t="notice">Für zuverlässige Signaltöne die App geöffnet lassen. Bei gesperrtem Bildschirm kann der Browser Töne verzögern.</p></main><dialog id="dialog"><form id="form"><div class="dialog-head"><h2 data-t="settings">Einstellungen</h2><button type="button" id="close" aria-label="Close">×</button></div><p data-t="settingsHint">Dein Tempo, deine Pausen. Änderungen starten einen neuen Ablauf.</p><div class="fields" id="fields"></div><label><span data-t="sound">Signalton</span><select id="sound"><option value="chime">Chime</option><option value="bell">Bell</option><option value="soft">Soft</option><option value="none">Silent</option></select></label><button type="button" id="test" data-t="test">♫ Ton anhören</button><label><span data-t="volume">Lautstärke</span><input id="volume" type="range" min="0" max="100"></label><p class="small" data-t="soundNote">Die integrierten Töne werden synthetisch erzeugt. Keine externen Audioaufnahmen.</p><button class="primary" data-t="save">Speichern & zurücksetzen</button></form></dialog><dialog id="installDialog"><h2 data-t="install">App installieren</h2><p data-t="installHelp">Im Browser-Menü „App installieren“ oder „Zum Startbildschirm hinzufügen“ wählen. Auf iPhone/iPad: Safari → Teilen → Zum Home-Bildschirm. Nach dem ersten Laden auch offline nutzbar.</p><button id="installClose" data-t="close">Schließen</button></dialog><script src="app.js"></script></body></html>
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#f5f4ed" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#18201b" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
+    <meta
+      name="description"
+      content="Clean-a-Doro — dein entspannter Putztimer. Your gentle cleaning timer."
+    />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" href="icon.svg" />
+    <link rel="apple-touch-icon" href="icon-192.png" />
+    <title>Clean-a-Doro</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="./"
+        ><img src="icon.svg" alt="" /><b
+          >Clean-a-Doro<span data-t="tag"
+            >Ein bisschen sauberer. Ganz entspannt.</span
+          ></b
+        ></a
+      >
+      <div class="tools">
+        <button id="lang" aria-label="Switch to English">EN</button
+        ><button id="settings" data-t="settings">Einstellungen</button>
+      </div>
+    </header>
+    <main>
+      <div class="intro">
+        <span class="eyebrow" data-t="eyebrow">DEIN KLEINER PUTZRHYTHMUS</span>
+        <h1 data-t="headline">Kleine Schritte.<br />Sauberes Zuhause.</h1>
+        <p data-t="sub">Ein Raum. Ein Anfang. Die Pause gehört dazu.</p>
+      </div>
+      <section class="timer-card">
+        <div class="card-top">
+          <span id="phase" class="badge"></span><span id="round"></span>
+        </div>
+        <div id="clock" role="timer" aria-label="Countdown">10:00</div>
+        <p id="hint" aria-live="polite"></p>
+        <div class="progress"><div id="bar"></div></div>
+        <button id="start" class="primary"></button
+        ><button id="stop" class="stop" data-t="stop">
+          ■ &nbsp; Stop / Abbruch
+        </button>
+        <p id="next" class="next"></p>
+      </section>
+      <section class="rhythm">
+        <div class="section-title">
+          <h2 data-t="rhythm">Dein Rhythmus</h2>
+          <span data-t="repeat">Und dann wieder von vorn.</span>
+        </div>
+        <div class="steps" id="steps"></div>
+      </section>
+      <p class="gentle" data-t="gentle">
+        Nicht alles auf einmal. Zehn Minuten sind ein guter Anfang.
+      </p>
+      <footer>
+        <span data-t="local">Deine Einstellungen bleiben auf diesem Gerät.</span
+        ><button id="install" data-t="install">App installieren ↗</button>
+      </footer>
+      <p class="notice" data-t="notice">
+        Für zuverlässige Signaltöne die App geöffnet lassen. Bei gesperrtem
+        Bildschirm kann der Browser Töne verzögern.
+      </p>
+    </main>
+    <dialog id="dialog">
+      <form id="form">
+        <div class="dialog-head">
+          <h2 data-t="settings">Einstellungen</h2>
+          <button type="button" id="close" aria-label="Close">×</button>
+        </div>
+        <p data-t="settingsHint">
+          Dein Tempo, deine Pausen. Änderungen starten einen neuen Ablauf.
+        </p>
+        <div class="fields" id="fields"></div>
+        <label
+          ><span data-t="sound">Signalton</span
+          ><select id="sound">
+            <option value="chime">Chime</option>
+            <option value="bell">Bell</option>
+            <option value="soft">Soft</option>
+            <option value="none">Silent</option>
+          </select></label
+        ><button type="button" id="test" data-t="test">♫ Ton anhören</button
+        ><label
+          ><span data-t="volume">Lautstärke</span
+          ><input id="volume" type="range" min="0" max="100"
+        /></label>
+        <p class="small" data-t="soundNote">
+          Die integrierten Töne werden synthetisch erzeugt. Keine externen
+          Audioaufnahmen.
+        </p>
+        <button class="primary" data-t="save">Speichern & zurücksetzen</button>
+      </form>
+    </dialog>
+    <dialog id="installDialog">
+      <h2 data-t="install">App installieren</h2>
+      <p data-t="installHelp">
+        Im Browser-Menü „App installieren“ oder „Zum Startbildschirm hinzufügen“
+        wählen. Auf iPhone/iPad: Safari → Teilen → Zum Home-Bildschirm. Nach dem
+        ersten Laden auch offline nutzbar.
+      </p>
+      <button id="installClose" data-t="close">Schließen</button>
+    </dialog>
+    <script src="app.js"></script>
+  </body>
+</html>

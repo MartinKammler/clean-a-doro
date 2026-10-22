@@ -12,6 +12,8 @@ A small bilingual cleaning Pomodoro progressive web app.
 - Start begins the timer. At 00:00 the alert repeats until Start acknowledges it and starts the next phase. Stop resets the session.
 - Drei synthetisch erzeugte Signaltöne und Lautstärkeregelung / Three synthesized alert sounds and volume control
 - Lokale Speicherung, Offline-Cache, installierbare PWA / Local storage, offline cache, installable PWA
+- Helles und dunkles Design (folgt der Systemeinstellung) / Light and dark theme following the system setting
+- Optionale Benachrichtigung bei Phasenende, wenn die App im Hintergrund ist (Erlaubnis wird beim ersten Start abgefragt) / Optional notification when a phase ends while the app is in the background (permission is requested on first start)
 - Eigenes Tomaten-Mopp-Logo / Tomato-and-mop logo
 
 ## Lokal starten / Run locally
@@ -32,9 +34,9 @@ Serve `dist/` over HTTPS. Relative paths support subdirectory hosting. Service w
 
 ## Hinweise / Limitations
 
-Mobile Browser können Timer und Audio bei gesperrtem Bildschirm oder im Hintergrund aussetzen. Für zuverlässige Signaltöne die App geöffnet lassen. Verstrichene Zeit wird anhand der Uhrzeit geprüft. Nach Ablauf wartet die App auf Bestätigung; verpasste Phasen werden nicht automatisch übersprungen. Nach einem Neuladen kann Audio bis zur nächsten Benutzerinteraktion blockiert sein.
+Mobile Browser können Timer und Audio bei gesperrtem Bildschirm oder im Hintergrund aussetzen. Für zuverlässige Signaltöne die App geöffnet lassen. Verstrichene Zeit wird anhand der Uhrzeit geprüft. Nach Ablauf wartet die App auf Bestätigung; verpasste Phasen werden nicht automatisch übersprungen. Nach einem Neuladen ist Audio bis zur nächsten Berührung blockiert; ein offener Alarm wird dann wieder hörbar. Während Timer oder Alarm laufen, hält die App den Bildschirm wach (sofern der Browser die Wake Lock API unterstützt). Auf iPhones schaltet der Stummschalter auch die Signaltöne stumm.
 
-Mobile browsers may suspend timers and audio in the background or while locked. Keep the app open for reliable alerts. Elapsed time is checked against the clock; completed phases wait for acknowledgment. Reloading can block audio until the next user interaction.
+Mobile browsers may suspend timers and audio in the background or while locked. Keep the app open for reliable alerts. Elapsed time is checked against the clock; completed phases wait for acknowledgment. After a reload, audio is blocked until the next tap; a pending alarm becomes audible again then. While the timer or alarm is active the app keeps the screen awake (where the Wake Lock API is supported). On iPhones the mute switch also silences the alerts.
 
 Einstellungen und Timerstatus werden ausschließlich lokal im Browser gespeichert. / Settings and timer state are stored locally in the browser.
 
@@ -45,6 +47,8 @@ Einstellungen und Timerstatus werden ausschließlich lokal im Browser gespeicher
 - `dist/app.js`: Timer, Übersetzungen, Einstellungen und Audio / timer, translations, settings and audio
 - `dist/sw.js`: Offline-Cache
 - `dist/manifest.webmanifest`: PWA-Metadaten
-- `dist/icon*`: Logo und App-Icons
+- `dist/icon*`: Logo und App-Icons (`icon-maskable-*` mit Sicherheitsrand für Android / with safe zone for Android)
+
+Der Code liegt bewusst unminifiziert in `dist/`, damit er ohne Build-Schritt lesbar und reviewbar bleibt. Bei geänderter Asset-Liste die Cache-Version in `sw.js` erhöhen. / Code in `dist/` is intentionally unminified. Bump the cache version in `sw.js` when the asset list changes.
 
 Die Signaltöne entstehen per Web Audio API ohne fremde Audioaufnahmen. / Sounds use Web Audio synthesis without third-party recordings.
