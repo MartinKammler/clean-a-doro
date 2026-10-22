@@ -7,7 +7,7 @@
 }
 
 :root {
-  color-scheme: light dark;
+  color-scheme: light;
   --bg: #f2f7f5;
   --surface: #ffffff;
   --text: #102b27;
@@ -39,28 +39,250 @@
   font-synthesis: none;
   -webkit-font-smoothing: antialiased;
 }
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0d1917;
-    --surface: #142420;
-    --text: #e6f1ed;
-    --muted: #9db3ad;
-    --faint: #82978f;
-    --line: #20332e;
-    --line-strong: #2b423b;
-    --hover: #1c2e29;
-    --focus: #ff8a6e;
-    --primary: #5fd3a9;
-    --primary-hover: #7fe0bc;
-    --primary-text: #08201a;
-    --clean: #ff7d61;
-    --clean-soft: #5c3329;
-    --break: #4fd1a5;
-    --break-mid: #2f7a62;
-    --break-soft: #25483c;
-    --track: #1f322d;
-    --backdrop: #000000a6;
-  }
+/* Colour schemes: chosen in the settings, applied by theme.js via
+   data-theme and data-scheme (light / dark) on <html>. Mint is the
+   default and lives in :root above. */
+:root[data-scheme="dark"] {
+  color-scheme: dark;
+  --bg: #0d1917;
+  --surface: #142420;
+  --text: #e6f1ed;
+  --muted: #9db3ad;
+  --faint: #82978f;
+  --line: #20332e;
+  --line-strong: #2b423b;
+  --hover: #1c2e29;
+  --focus: #ff8a6e;
+  --primary: #5fd3a9;
+  --primary-hover: #7fe0bc;
+  --primary-text: #08201a;
+  --clean: #ff7d61;
+  --clean-soft: #5c3329;
+  --break: #4fd1a5;
+  --break-mid: #2f7a62;
+  --break-soft: #25483c;
+  --track: #1f322d;
+  --backdrop: #000000a6;
+}
+
+/* Blau / blue */
+:root[data-theme="blue"] {
+  --bg: #eef3fa;
+  --surface: #ffffff;
+  --text: #0f2240;
+  --muted: #50627e;
+  --faint: #6f7f97;
+  --line: #dbe3ef;
+  --line-strong: #c7d3e4;
+  --hover: #e3eaf5;
+  --focus: #e0482a;
+  --primary: #1d3f7a;
+  --primary-hover: #142f5e;
+  --primary-text: #ffffff;
+  --clean: #f06a3c;
+  --clean-soft: #fde0d2;
+  --break: #2f7fe0;
+  --break-mid: #93bdf2;
+  --break-soft: #d6e6fb;
+  --track: #e5ecf6;
+  --backdrop: #0f224066;
+}
+:root[data-theme="blue"][data-scheme="dark"] {
+  --bg: #0b1220;
+  --surface: #121c30;
+  --text: #e5ecf8;
+  --muted: #9fb0cb;
+  --faint: #8293ad;
+  --line: #1f2b42;
+  --line-strong: #2a3a56;
+  --hover: #1a2539;
+  --focus: #ff9a70;
+  --primary: #6ea8ff;
+  --primary-hover: #8fbcff;
+  --primary-text: #0a1730;
+  --clean: #ff8a5c;
+  --clean-soft: #4f2f25;
+  --break: #5aa2ff;
+  --break-mid: #2c5a99;
+  --break-soft: #1e3456;
+  --track: #1c2840;
+  --backdrop: #000000a6;
+}
+
+/* Rot / red */
+:root[data-theme="red"] {
+  --bg: #fbf1f0;
+  --surface: #ffffff;
+  --text: #3a1414;
+  --muted: #7d5552;
+  --faint: #957370;
+  --line: #f0dcd9;
+  --line-strong: #e6c9c5;
+  --hover: #f6e4e1;
+  --focus: #c4262e;
+  --primary: #8f1d24;
+  --primary-hover: #6f141a;
+  --primary-text: #ffffff;
+  --clean: #e0343c;
+  --clean-soft: #fbd5d4;
+  --break: #d07a2a;
+  --break-mid: #ecc28f;
+  --break-soft: #f8e5cc;
+  --track: #f4e5e3;
+  --backdrop: #3a141466;
+}
+:root[data-theme="red"][data-scheme="dark"] {
+  --bg: #1a0c0d;
+  --surface: #241214;
+  --text: #f6e6e5;
+  --muted: #c4a3a1;
+  --faint: #a88886;
+  --line: #36201f;
+  --line-strong: #47292a;
+  --hover: #2e1819;
+  --focus: #ff8a8a;
+  --primary: #ff6b6f;
+  --primary-hover: #ff8b8e;
+  --primary-text: #2a0708;
+  --clean: #ff6b6f;
+  --clean-soft: #5a2427;
+  --break: #f0a75a;
+  --break-mid: #8a5a2a;
+  --break-soft: #4a3220;
+  --track: #331c1d;
+  --backdrop: #000000a6;
+}
+
+/* Grün / green */
+:root[data-theme="green"] {
+  --bg: #f1f6ec;
+  --surface: #ffffff;
+  --text: #1b2e14;
+  --muted: #5a6e4e;
+  --faint: #74866a;
+  --line: #dfe8d6;
+  --line-strong: #cddac0;
+  --hover: #e7efdd;
+  --focus: #d0632e;
+  --primary: #2f5a1e;
+  --primary-hover: #224514;
+  --primary-text: #ffffff;
+  --clean: #d9692e;
+  --clean-soft: #f8dcc8;
+  --break: #5a9e32;
+  --break-mid: #b2d896;
+  --break-soft: #deefcf;
+  --track: #e8efe0;
+  --backdrop: #1b2e1466;
+}
+:root[data-theme="green"][data-scheme="dark"] {
+  --bg: #0f160b;
+  --surface: #172112;
+  --text: #e8f0e0;
+  --muted: #a7b89a;
+  --faint: #8b9c7f;
+  --line: #243320;
+  --line-strong: #2f4229;
+  --hover: #1e2b19;
+  --focus: #ffa070;
+  --primary: #8fd463;
+  --primary-hover: #a8e283;
+  --primary-text: #112008;
+  --clean: #ff9a5c;
+  --clean-soft: #4f3220;
+  --break: #7fcc52;
+  --break-mid: #3e6e28;
+  --break-soft: #263f1c;
+  --track: #1f2d1a;
+  --backdrop: #000000a6;
+}
+
+/* Gelb / yellow */
+:root[data-theme="yellow"] {
+  --bg: #fbf7e8;
+  --surface: #fffdf6;
+  --text: #2e2610;
+  --muted: #6e6446;
+  --faint: #877c5e;
+  --line: #eee6cc;
+  --line-strong: #e3d8b4;
+  --hover: #f5eed6;
+  --focus: #c0461e;
+  --primary: #6b5200;
+  --primary-hover: #4f3c00;
+  --primary-text: #ffffff;
+  --clean: #e0532a;
+  --clean-soft: #f9d9c9;
+  --break: #d9a400;
+  --break-mid: #f0d775;
+  --break-soft: #f8edc0;
+  --track: #f2ecd6;
+  --backdrop: #2e261066;
+}
+:root[data-theme="yellow"][data-scheme="dark"] {
+  --bg: #16130a;
+  --surface: #201c0f;
+  --text: #f5efd9;
+  --muted: #c2b791;
+  --faint: #a39a78;
+  --line: #332d19;
+  --line-strong: #443c22;
+  --hover: #2a2514;
+  --focus: #ff9f70;
+  --primary: #ffd23f;
+  --primary-hover: #ffde70;
+  --primary-text: #231b00;
+  --clean: #ff8a5c;
+  --clean-soft: #52301f;
+  --break: #f2c230;
+  --break-mid: #8a6e10;
+  --break-soft: #403411;
+  --track: #2c2716;
+  --backdrop: #000000a6;
+}
+
+/* Hoher Kontrast / high contrast */
+:root[data-theme="contrast"] {
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --text: #000000;
+  --muted: #1a1a1a;
+  --faint: #333333;
+  --line: #000000;
+  --line-strong: #000000;
+  --hover: #e6e6e6;
+  --focus: #0047ff;
+  --primary: #000000;
+  --primary-hover: #222222;
+  --primary-text: #ffffff;
+  --clean: #c00000;
+  --clean-soft: #ffd6d6;
+  --break: #005a9c;
+  --break-mid: #6fa8d6;
+  --break-soft: #cfe3f5;
+  --track: #d0d0d0;
+  --backdrop: #000000b3;
+}
+:root[data-theme="contrast"][data-scheme="dark"] {
+  --bg: #000000;
+  --surface: #000000;
+  --text: #ffffff;
+  --muted: #f0f0f0;
+  --faint: #d0d0d0;
+  --line: #ffffff;
+  --line-strong: #ffffff;
+  --hover: #262626;
+  --focus: #ffd400;
+  --primary: #ffd400;
+  --primary-hover: #ffe14d;
+  --primary-text: #000000;
+  --clean: #ff5c5c;
+  --clean-soft: #4d0000;
+  --break: #5cc8ff;
+  --break-mid: #1f6f99;
+  --break-soft: #00304d;
+  --track: #404040;
+  --backdrop: #000000d9;
 }
 
 * {

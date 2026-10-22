@@ -133,6 +133,18 @@ const words = {
     bell: "Glocke",
     soft: "Sanfte Töne",
     none: "Lautlos",
+    theme: "Farbschema",
+    mode: "Darstellung",
+    lookNote: "Farben gelten sofort und setzen den Timer nicht zurück.",
+    mint: "Mint",
+    blue: "Blau",
+    red: "Rot",
+    green: "Grün",
+    yellow: "Gelb",
+    contrast: "Hoher Kontrast",
+    auto: "Automatisch (wie System)",
+    light: "Hell",
+    dark: "Dunkel",
   },
   en: {
     tag: "A little cleaner. A little calmer.",
@@ -182,6 +194,18 @@ const words = {
     bell: "Bell",
     soft: "Soft notes",
     none: "Silent",
+    theme: "Color scheme",
+    mode: "Appearance",
+    lookNote: "Colors apply right away and do not reset the timer.",
+    mint: "Mint",
+    blue: "Blue",
+    red: "Red",
+    green: "Green",
+    yellow: "Yellow",
+    contrast: "High contrast",
+    auto: "Automatic (system)",
+    light: "Light",
+    dark: "Dark",
   },
 };
 const t = (k) => words[lang][k];
@@ -232,7 +256,7 @@ function render() {
   $("cycle").innerHTML = segments;
   lastNow = -1;
   document
-    .querySelectorAll("#sound option")
+    .querySelectorAll("#sound option, #theme option, #mode option")
     .forEach((o) => (o.textContent = t(o.value)));
   lastHint = null;
   update();
@@ -500,7 +524,14 @@ $("settings").onclick = () => {
     .join("");
   $("sound").value = cfg.sound;
   $("volume").value = cfg.volume;
+  $("theme").value = look.theme;
+  $("mode").value = look.mode;
   $("dialog").showModal();
+};
+$("theme").onchange = $("mode").onchange = () => {
+  look = { theme: $("theme").value, mode: $("mode").value };
+  saveLook();
+  applyLook();
 };
 $("close").onclick = () => $("dialog").close();
 $("test").onclick = async () => {

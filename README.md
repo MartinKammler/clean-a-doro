@@ -12,7 +12,7 @@ A small bilingual cleaning Pomodoro progressive web app.
 - Start begins the timer. At 00:00 the alert repeats until Start acknowledges it and starts the next phase. Stop resets the session.
 - Drei synthetisch erzeugte Signaltöne und Lautstärkeregelung / Three synthesized alert sounds and volume control
 - Lokale Speicherung, Offline-Cache, installierbare PWA / Local storage, offline cache, installable PWA
-- Helles und dunkles Design (folgt der Systemeinstellung) / Light and dark theme following the system setting
+- Farbschemata Mint, Blau, Rot, Grün, Gelb und Hoher Kontrast, jeweils hell oder dunkel (Automatisch folgt der Systemeinstellung) / Color schemes mint, blue, red, green, yellow and high contrast, each light or dark (automatic follows the system setting)
 - Optionale Benachrichtigung bei Phasenende, wenn die App im Hintergrund ist (Erlaubnis wird beim ersten Start abgefragt) / Optional notification when a phase ends while the app is in the background (permission is requested on first start)
 - Eigenes Tomaten-Mopp-Logo / Tomato-and-mop logo
 
@@ -50,6 +50,7 @@ Einstellungen und Timerstatus werden ausschließlich lokal im Browser gespeicher
 
 - `dist/index.html`: Oberfläche / UI
 - `dist/style.css`: Responsive Gestaltung / styling
+- `dist/theme.js`: Farbschema vor dem ersten Zeichnen anwenden / applies the color scheme before first paint
 - `dist/app.js`: Timer, Übersetzungen, Einstellungen und Audio / timer, translations, settings and audio
 - `dist/sw.js`: Offline-Cache
 - `dist/manifest.webmanifest`: PWA-Metadaten

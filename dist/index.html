@@ -16,6 +16,7 @@
     <title>Clean-a-Doro</title>
     <link rel="preload" href="fonts/bricolage-grotesque.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="style.css" />
+    <script src="theme.js"></script>
   </head>
   <body>
     <header>
@@ -101,6 +102,27 @@
         <p class="small" data-t="soundNote">
           Die integrierten Töne werden synthetisch erzeugt. Keine externen
           Audioaufnahmen.
+        </p>
+        <label
+          ><span data-t="theme">Farbschema</span
+          ><select id="theme">
+            <option value="mint">Mint</option>
+            <option value="blue">Blau</option>
+            <option value="red">Rot</option>
+            <option value="green">Grün</option>
+            <option value="yellow">Gelb</option>
+            <option value="contrast">Hoher Kontrast</option>
+          </select></label
+        ><label
+          ><span data-t="mode">Darstellung</span
+          ><select id="mode">
+            <option value="auto">Automatisch</option>
+            <option value="light">Hell</option>
+            <option value="dark">Dunkel</option>
+          </select></label
+        >
+        <p class="small" data-t="lookNote">
+          Farben gelten sofort und setzen den Timer nicht zurück.
         </p>
         <button class="primary" data-t="save">Speichern & zurücksetzen</button>
       </form>
