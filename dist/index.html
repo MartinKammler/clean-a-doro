@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="theme-color" content="#f5f4ed" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#18201b" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f2f7f5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0d1917" media="(prefers-color-scheme: dark)" />
     <meta name="color-scheme" content="light dark" />
     <meta
       name="description"
@@ -14,6 +14,7 @@
     <link rel="icon" href="icon.svg" />
     <link rel="apple-touch-icon" href="icon-192.png" />
     <title>Clean-a-Doro</title>
+    <link rel="preload" href="fonts/bricolage-grotesque.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -32,17 +33,22 @@
     </header>
     <main>
       <div class="intro">
-        <span class="eyebrow" data-t="eyebrow">DEIN KLEINER PUTZRHYTHMUS</span>
         <h1 data-t="headline">Kleine Schritte.<br />Sauberes Zuhause.</h1>
         <p data-t="sub">Ein Raum. Ein Anfang. Die Pause gehört dazu.</p>
       </div>
       <section class="timer-card">
-        <div class="card-top">
-          <span id="phase" class="badge"></span><span id="round"></span>
+        <span id="phase" class="badge"></span>
+        <div class="dial">
+          <svg class="ring" viewBox="0 0 120 120" aria-hidden="true">
+            <circle class="track" cx="60" cy="60" r="54" pathLength="100" />
+            <circle id="ring" class="fill" cx="60" cy="60" r="54" pathLength="100" />
+          </svg>
+          <div class="dial-center">
+            <div id="clock" role="timer" aria-label="Countdown">10:00</div>
+            <span id="round"></span>
+          </div>
         </div>
-        <div id="clock" role="timer" aria-label="Countdown">10:00</div>
         <p id="hint" aria-live="polite"></p>
-        <div class="progress"><div id="bar"></div></div>
         <button id="start" class="primary"></button
         ><button id="stop" class="stop" data-t="stop">
           ■ &nbsp; Stop / Abbruch
@@ -54,6 +60,7 @@
           <h2 data-t="rhythm">Dein Rhythmus</h2>
           <span data-t="repeat">Und dann wieder von vorn.</span>
         </div>
+        <div class="cycle" id="cycle" aria-hidden="true"></div>
         <div class="steps" id="steps"></div>
       </section>
       <p class="gentle" data-t="gentle">

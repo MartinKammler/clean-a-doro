@@ -47,6 +47,7 @@ Einstellungen und Timerstatus werden ausschließlich lokal im Browser gespeicher
 - `dist/app.js`: Timer, Übersetzungen, Einstellungen und Audio / timer, translations, settings and audio
 - `dist/sw.js`: Offline-Cache
 - `dist/manifest.webmanifest`: PWA-Metadaten
+- `dist/fonts/`: Bricolage Grotesque (variabel, lokal eingebunden für Offline-Betrieb; SIL Open Font License, siehe `OFL.txt`) / self-hosted variable font for offline use
 - `dist/icon*`: Logo und App-Icons (`icon-maskable-*` mit Sicherheitsrand für Android / with safe zone for Android)
 
 Der Code liegt bewusst unminifiziert in `dist/`, damit er ohne Build-Schritt lesbar und reviewbar bleibt. Bei geänderter Asset-Liste die Cache-Version in `sw.js` erhöhen. / Code in `dist/` is intentionally unminified. Bump the cache version in `sw.js` when the asset list changes.

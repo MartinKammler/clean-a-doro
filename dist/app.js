@@ -86,7 +86,6 @@ const words = {
   de: {
     tag: "Ein bisschen sauberer. Ganz entspannt.",
     settings: "Einstellungen",
-    eyebrow: "DEIN KLEINER PUTZRHYTHMUS",
     headline: "Kleine Schritte.<br>Sauberes Zuhause.",
     sub: "Ein Raum. Ein Anfang. Die Pause gehört dazu.",
     stop: "■  Stop / Abbruch",
@@ -120,7 +119,7 @@ const words = {
     hint: "Schnapp dir eine kleine Aufgabe.",
     breakHint: "Durchatmen. Diese Zeit gehört dir.",
     doneHint: "Geschafft! Starte die nächste Phase, wenn du bereit bist.",
-    dismiss: (next) => `✓ Alarm aus · ${next} starten`,
+    dismiss: (next) => `✓ ${next} starten`,
     notifyTitle: "Clean-a-Doro: Zeit ist um",
     notifyBody: (next) => `Als Nächstes: ${next}. Tippen zum Öffnen.`,
     langLabel: "Switch to English",
@@ -138,7 +137,6 @@ const words = {
   en: {
     tag: "A little cleaner. A little calmer.",
     settings: "Settings",
-    eyebrow: "YOUR LITTLE CLEANING RHYTHM",
     headline: "Small steps.<br>A happier home.",
     sub: "One room. One start. Breaks are part of it.",
     stop: "■  Stop / reset",
@@ -170,7 +168,7 @@ const words = {
     hint: "Pick one small thing to tackle.",
     breakHint: "Take a breath. This time is yours.",
     doneHint: "Done! Start the next phase when you are ready.",
-    dismiss: (next) => `✓ Dismiss · start ${next.toLowerCase()}`,
+    dismiss: (next) => `✓ Start ${next.toLowerCase()}`,
     notifyTitle: "Clean-a-Doro: time’s up",
     notifyBody: (next) => `Up next: ${next}. Tap to open.`,
     langLabel: "Auf Deutsch umschalten",
@@ -221,8 +219,18 @@ function render() {
         : i === 1
           ? t("each")
           : `${t("after")} ${i === 2 ? cfg.every : cfg.superEvery} ${t("rounds")}`;
-    return `<div class="step"><small>${label}</small><strong>${cfg[p]}</strong> <span>${t("minute")}</span></div>`;
+    return `<div class="step" data-phase="${p}"><small>${label}</small><strong>${cfg[p]}</strong> <span>${t("minute")}</span></div>`;
   }).join("");
+  // One full cycle as a strip, each segment as wide as its duration.
+  let segments = "";
+  for (let n = 1; n <= cfg.superEvery; n++) {
+    const b = breakFor(n);
+    segments +=
+      `<i data-phase="clean" style="flex-grow:${cfg.clean}"></i>` +
+      `<i data-phase="${b}" style="flex-grow:${cfg[b]}"></i>`;
+  }
+  $("cycle").innerHTML = segments;
+  lastNow = -1;
   document
     .querySelectorAll("#sound option")
     .forEach((o) => (o.textContent = t(o.value)));
@@ -231,6 +239,7 @@ function render() {
 }
 
 let lastHint = null;
+let lastNow = -1;
 function update() {
   const ms = state.running
     ? Math.max(0, state.end - Date.now())
@@ -241,7 +250,7 @@ function update() {
     ":" +
     String(seconds % 60).padStart(2, "0");
   $("clock").textContent = clock;
-  $("phase").textContent = "●  " + t(state.phase);
+  $("phase").textContent = t(state.phase);
   $("round").textContent =
     t("round") +
     " " +
@@ -271,9 +280,26 @@ function update() {
   $("start").textContent = label;
   $("next").textContent =
     t("next") + ": " + cfg[next] + " " + t("minute") + " " + t(next);
-  $("bar").style.width =
-    Math.max(0, Math.min(100, 100 - (ms / (cfg[state.phase] * 60000)) * 100)) +
-    "%";
+  const done = Math.max(
+    0,
+    Math.min(100, 100 - (ms / (cfg[state.phase] * 60000)) * 100),
+  );
+  $("ring").style.strokeDashoffset = 100 - done;
+  // Round caps would otherwise draw a lone dot at 0 %.
+  $("ring").style.opacity = done > 0.2 ? 1 : 0;
+
+  // Mark where we are in the cycle strip.
+  const inCycle =
+    state.phase === "clean"
+      ? (state.round % cfg.superEvery) * 2
+      : ((state.round - 1 + cfg.superEvery) % cfg.superEvery) * 2 + 1;
+  if (inCycle !== lastNow) {
+    const segs = $("cycle").children;
+    segs[lastNow]?.classList.remove("now");
+    segs[inCycle]?.classList.add("now");
+    lastNow = inCycle;
+  }
+
   document.body.classList.toggle("break", state.phase !== "clean");
   document.body.classList.toggle("ringing", !!state.awaiting);
   document.title = clock + " · " + t(state.phase) + " · Clean-a-Doro";

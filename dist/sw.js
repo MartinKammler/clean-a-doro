@@ -1,6 +1,6 @@
 // Bump the version whenever the list of assets changes. Content updates
 // are picked up automatically because fetches go network-first.
-const CACHE = "clean-a-doro-v3";
+const CACHE = "clean-a-doro-v4";
 const ASSETS = [
   "./",
   "./index.html",
@@ -12,6 +12,7 @@ const ASSETS = [
   "./icon-maskable-192.png",
   "./icon-maskable-512.png",
   "./manifest.webmanifest",
+  "./fonts/bricolage-grotesque.woff2",
 ];
 
 self.addEventListener("install", (e) => {
