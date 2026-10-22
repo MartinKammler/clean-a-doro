@@ -1,23 +1,27 @@
 import sys
 from PIL import Image, ImageDraw, ImageFilter
 src, out = sys.argv[1], sys.argv[2]
-im = Image.open(src).convert("RGB")
-w, h = im.size
-# Flood-fill the white background from the border; the thick black outlines stop it.
-marked = im.copy()
-for x, y in [(0, 0), (w-1, 0), (0, h-1), (w-1, h-1), (w//2, 0), (w//2, h-1), (0, h//2), (w-1, h//2)]:
-    if min(marked.getpixel((x, y))) > 220:
-        ImageDraw.floodfill(marked, (x, y), (255, 0, 255), thresh=60)
-alpha = Image.eval(Image.eval(marked.getchannel("G"), lambda v: 255) , lambda v: v)
-px_m, a = marked.load(), Image.new("L", (w, h), 255)
-pa = a.load()
-for y in range(h):
-    for x in range(w):
-        if px_m[x, y] == (255, 0, 255):
-            pa[x, y] = 0
-a = a.filter(ImageFilter.MinFilter(3)).filter(ImageFilter.GaussianBlur(0.8))  # trim light fringe, smooth edge
-rgba = im.copy(); rgba.putalpha(a)
-rgba = rgba.crop(a.point(lambda v: 255 if v > 8 else 0).getbbox())
+im = Image.open(src)
+if im.mode == "RGBA" and im.getextrema()[3][0] < 255:
+    # Already cut out: use the image's own transparency.
+    rgba = im
+else:
+    im = im.convert("RGB")
+    w, h = im.size
+    # Flood-fill the white background from the border; the thick black outlines stop it.
+    marked = im.copy()
+    for x, y in [(0, 0), (w-1, 0), (0, h-1), (w-1, h-1), (w//2, 0), (w//2, h-1), (0, h//2), (w-1, h//2)]:
+        if min(marked.getpixel((x, y))) > 220:
+            ImageDraw.floodfill(marked, (x, y), (255, 0, 255), thresh=60)
+    px_m, a = marked.load(), Image.new("L", (w, h), 255)
+    pa = a.load()
+    for y in range(h):
+        for x in range(w):
+            if px_m[x, y] == (255, 0, 255):
+                pa[x, y] = 0
+    a = a.filter(ImageFilter.MinFilter(3)).filter(ImageFilter.GaussianBlur(0.8))  # trim light fringe, smooth edge
+    rgba = im.copy(); rgba.putalpha(a)
+rgba = rgba.crop(rgba.getchannel("A").point(lambda v: 255 if v > 8 else 0).getbbox())
 
 def square(size, scale, bg=None):
     canvas = Image.new("RGBA", (size, size), bg or (0, 0, 0, 0))
