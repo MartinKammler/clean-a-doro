@@ -1,6 +1,6 @@
 // Bump the version whenever the list of assets changes. Content updates
 // are picked up automatically because fetches go network-first.
-const CACHE = "clean-a-doro-v5";
+const CACHE = "clean-a-doro-v6";
 const ASSETS = [
   "./",
   "./index.html",
@@ -43,7 +43,10 @@ self.addEventListener("fetch", (e) => {
   )
     return;
   e.respondWith(
-    fetch(e.request)
+    // GitHub Pages sends max-age=600; without "no-cache" the browser could
+    // pair a fresh index.html with a stale app.js right after a deploy.
+    // Revalidating is cheap (304) and keeps all files on the same version.
+    fetch(e.request, { cache: "no-cache" })
       .then((r) => {
         if (r.ok && r.type === "basic") {
           const clone = r.clone();
