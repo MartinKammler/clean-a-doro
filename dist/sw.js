@@ -1,13 +1,14 @@
 // Bump the version whenever the list of assets changes. Content updates
 // are picked up automatically because fetches go network-first.
-const CACHE = "clean-a-doro-v6";
+const CACHE = "clean-a-doro-v7";
 const ASSETS = [
   "./",
   "./index.html",
   "./style.css",
   "./app.js",
   "./theme.js",
-  "./icon.svg",
+  "./logo.png",
+  "./apple-touch-icon.png",
   "./icon-192.png",
   "./icon-512.png",
   "./icon-maskable-192.png",

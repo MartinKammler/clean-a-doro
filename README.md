@@ -14,7 +14,7 @@ A small bilingual cleaning Pomodoro progressive web app.
 - Lokale Speicherung, Offline-Cache, installierbare PWA / Local storage, offline cache, installable PWA
 - Farbschemata Mint, Blau, Rot, Grün, Gelb und Hoher Kontrast, jeweils hell oder dunkel (Automatisch folgt der Systemeinstellung) / Color schemes mint, blue, red, green, yellow and high contrast, each light or dark (automatic follows the system setting)
 - Optionale Benachrichtigung bei Phasenende, wenn die App im Hintergrund ist (Erlaubnis wird beim ersten Start abgefragt) / Optional notification when a phase ends while the app is in the background (permission is requested on first start)
-- Eigenes Tomaten-Mopp-Logo / Tomato-and-mop logo
+- Tomaten-Mopp-Logo / Tomato-and-mop logo
 
 ## App öffnen / Open the app
 
@@ -55,7 +55,7 @@ Einstellungen und Timerstatus werden ausschließlich lokal im Browser gespeicher
 - `dist/sw.js`: Offline-Cache
 - `dist/manifest.webmanifest`: PWA-Metadaten
 - `dist/fonts/`: Bricolage Grotesque (variabel, lokal eingebunden für Offline-Betrieb; SIL Open Font License, siehe `OFL.txt`) / self-hosted variable font for offline use
-- `dist/icon*`: Logo und App-Icons (`icon-maskable-*` mit Sicherheitsrand für Android / with safe zone for Android)
+- `dist/logo.png`, `dist/icon-*`, `dist/apple-touch-icon.png`: Logo und App-Icons, erzeugt aus `assets/logo-original.png` mit `python assets/make_icons.py assets/logo-original.png dist` (benötigt Pillow) (`icon-maskable-*` mit Sicherheitsrand für Android / with safe zone for Android)
 
 Der Code liegt bewusst unminifiziert in `dist/`, damit er ohne Build-Schritt lesbar und reviewbar bleibt. Bei geänderter Asset-Liste die Cache-Version in `sw.js` erhöhen. / Code in `dist/` is intentionally unminified. Bump the cache version in `sw.js` when the asset list changes.
 
